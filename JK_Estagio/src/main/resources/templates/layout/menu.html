@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<style>
+		#logout{
+			border-radius: 10%;
+		    color: firebrick;
+		}
+		#home{
+			background-color: #0a4275;
+			color: white;
+			border-radius: 10%;
+		    padding-left: 10px;
+		    padding-right: 10px;
+		}
+
+	</style>
+  <div class="container-fluid">
+    <a id="home" class="navbar-brand" href="principal">JK Estagio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador','empresa')">
+          <a class="nav-link" href="aluno">Alunos</a> 
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+          <a class="nav-link" href="curso">Cursos</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+          <a class="nav-link" href="vaga">Vagas</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+          <a class="nav-link" href="escola">Escolas</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+          <a class="nav-link" href="permissao">Permissões</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador','empresa')">
+          <a class="nav-link" href="relatorio">Relatórios</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" id="logout" href="javascript: document.logoutForm.submit()" role="menuitem">Sair</a>
+
+   <form name="logoutForm" th:action="@{/signout}" method="post" th:hidden="true">
+      <input hidden type="submit" value="Sign Out"/>
+   </form> 
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

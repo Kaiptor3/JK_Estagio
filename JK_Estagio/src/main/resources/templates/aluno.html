@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/cabecalho}">
+<meta charset="ISO-8859-1">
+	<title>Página de Alunos</title>
+</head>
+<style>
+		#P{
+			margin: 0px 0px 20px 0px;
+		}
+		#botao{
+			background-color: #0a4275;
+		}	
+</style>
+
+<body>
+	<div th:insert="~{layout/menu}"></div>
+
+	<form name="salvar_aluno" class="form-horizontal" method="post" th:action="@{/salvar_aluno}"
+		th:object="${alunoEntity}">
+		<div class="container-fluid">
+			<h2>Alunos</h2>
+
+			<!--Começa cadastro de docentes -->
+			
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" maxlength="45"  id="nome" name="nome" required>
+				</div>
+				<div class="mb-3">
+					<label for="telefone" class="form-label">Telefone</label>
+					<input type="text" class="form-control" id="telefone" name="telefone" required>
+				</div>
+				
+				<script type="text/javascript">
+    			$("#telefone").mask("(00) 0000-0000");
+    			</script>
+				
+				<div class="mb-3">
+				<label for="escola" class="form-label">Escola</label>
+				<select class="form-select" aria-label="Selecione a escola" id="escola" name="escola" required>
+				   <option value="">Selecione a escola</option>
+				   <option th:each="escola : ${escola}" th:text="${escola.nome}" th:value="${escola.idEscola}" >
+				</select>
+				</div>
+				
+				<div class="mb-3">
+				<label for="curso" class="form-label">Curso</label>
+				<select class="form-select" aria-label="Selecione o curso" id="curso" name="curso" required>
+				   <option value="">Selecione o curso</option>
+				   <option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.idCurso}" >
+				</select>
+				</div>
+		
+				<div id="P" class="mb-e">
+					<label for="periodo" class="form-label">Perido</label>
+					<select class="form-select" aria-label="Selecione o periodo" id="periodo" name="periodo" required>
+						<option value="">Selecione o Periodo</option>
+						<option>Diurno</option>
+						<option>Noturno</option>
+					</select>
+				</div>
+				<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+			</div>
+			<!-- Termina cadastro de docentes -->
+		</div>
+		<!--Começa lista de docentes-->
+		<br>
+		<div id="tabela" class="container-fluid">
+		<h5 class="card-title">Alunos cadastrados</h5>
+		<table class="table table-sn table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th class="col-5">Nome</th>
+					<th>Telefone</th>
+					<th>Periodo</th>
+					<th class="col-1"></th>
+					<th class="col-1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aluno : ${aluno}">
+					<td th:text="${aluno.IdAluno}"></td>
+					<td th:text="${aluno.Nome}"></td>
+					<td th:text="${aluno.Telefone}"></td>
+					<td th:text="${aluno.Periodo}"></td>
+					<td><a class="btn btn-sm btn-warning" th:href="@{alterar_aluno/{idAluno}(idAluno=${aluno.IdAluno})}">Alterar</a></td>
+					<!--Começa o excluir-->
+					<td>
+						<a class="btn btn-sm btn-danger"
+							th:href="@{excluir_aluno/{idAluno}(idAluno=${aluno.IdAluno})}"
+							onclick="if (confirm('Deseja realmente excluir o aluno?')){return true;}else{event.stopPropagation();event.preventDefault();};">
+							Excluir
+						</a>
+					</td>
+					<!--Termina Exclusão-->
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+	</form>
+
+
+	<div th:insert="~{layout/rodape}"></div>
+
+</body>
+
+</html>

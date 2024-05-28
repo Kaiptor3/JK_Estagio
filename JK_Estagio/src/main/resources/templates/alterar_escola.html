@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{layout/cabecalho}">
+
+	<title>Página de Alunos</title>
+</head>
+
+<style>
+		#botao{
+			background-color: #0a4275;
+		}
+</style>
+
+<body>
+	<div th:insert="~{layout/menu}"></div>
+
+	<form name="alterar_aluno" class="form-horizontal" method="post" th:action="@{/alterar_aluno}"
+		th:object="${alunoEntity}">
+		<div class="container-fluid">
+			<h2>Alterar Aluno</h2>
+
+			<!--Começa cadastro de docentes -->
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<input class="form-control" type="hidden" maxlength="50" name="idAluno" th:value="${idAluno}"/>
+			
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" th:value="${aluno.Nome}" required>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" class="form-control" id="email" name="email"
+						placeholder="alunojk@faetec.br" th:value="${escola.email}" required>
+				</div>
+				<div class="mb-3">
+					<label for="estado" class="form-label">Estado</label>
+					<input type="text" class="form-control" id="estado" name="estado" th:value="${escola.Estado}" required>
+				</div>
+				<div class="mb-3">
+					<label for="bairro" class="form-label">Bairro</label>
+					<input type="text" class="form-control" id="bairro" name="bairro" th:value="${escola.Bairro}" required>
+				</div>
+				<div class="mb-3">
+					<label for="rua" class="form-label">Rua</label>
+					<input type="text" class="form-control" id="rua" name="rua" th:value="${escola.rua}" required>
+				</div>
+				<div class="mb-3">
+					<label for="numero" class="form-label">Numero</label>
+					<input type="text" class="form-control" id="numero" name="numero" th:value="${escola.Numero}" required>
+				</div>
+				<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+			</div>
+			<!-- Termina cadastro de docentes -->
+		</div>
+		<br>
+		
+	</form>
+
+	<div th:insert="~{layout/rodape}"></div>
+
+</body>
+
+</html>

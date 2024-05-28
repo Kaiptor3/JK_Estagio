@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/cabecalho}">
+<meta charset="ISO-8859-1">
+	<title>Página de Relatórios</title>
+</head>
+<body>
+	<div th:insert="~{layout/menu}"></div>
+
+
+  <div id="tabela" class="container-fluid">
+		<h5 class="card-title">Alunos cadastrados</h5>
+		<table class="table table-sn table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th class="col-1">Vaga</th>
+					<th class="col-5">Nome</th>	
+				    <th class="col-1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="vaga : ${listvagas}">
+					<td th:text="${vaga.IdVaga}"></td>
+					<td th:text="${vaga.Nome}"></td>
+					<td><a class="btn btn-sm btn-warning" th:href="@{vagas/{idVaga}(idVaga=${vaga.IdVaga})}" >Candidatos</a></td>
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+
+
+
+
+
+
+
+
+
+
+<div th:insert="~{layout/rodape}"></div>
+
+</body>
+
+</html>
