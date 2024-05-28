@@ -15,7 +15,7 @@
 
 <body>
 	<div th:insert="~{layout/menu}"></div>
-
+<div sec:authorize="hasAnyAuthority('administrador')">
 	<form name="salvar_aluno" class="form-horizontal" method="post" th:action="@{/salvar_aluno}"
 		th:object="${alunoEntity}">
 		<div class="container-fluid">
@@ -67,7 +67,7 @@
 			</div>
 			<!-- Termina cadastro de docentes -->
 		</div>
-		<!--Começa lista de docentes-->
+</div>		<!--Começa lista de docentes-->
 		<br>
 		<div id="tabela" class="container-fluid">
 		<h5 class="card-title">Alunos cadastrados</h5>
