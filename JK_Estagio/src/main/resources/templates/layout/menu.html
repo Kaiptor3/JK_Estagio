@@ -26,7 +26,7 @@
         <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
           <a class="nav-link" href="curso">Cursos</a>
         </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador', 'aluno', 'empresa')">
           <a class="nav-link" href="vaga">Vagas</a>
         </li>
         <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">

@@ -28,7 +28,7 @@ public class SecSecurityConfig {
 				auth -> auth
 				.requestMatchers("/singin", "/singup").permitAll()
 				.requestMatchers("/aluno").hasAnyAuthority("administrador","empresa")
-				.requestMatchers("/vaga").hasAnyAuthority("administrador")
+				.requestMatchers("/vaga").hasAnyAuthority("administrador","empresa")
 				.requestMatchers("/curso").hasAnyAuthority("administrador")
 				.requestMatchers("/escola").hasAnyAuthority("administrador")
 				.requestMatchers("/relatorio").hasAnyAuthority("administrador","empresa")

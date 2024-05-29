@@ -103,5 +103,22 @@ public class VagaController {
 		return mv;
 	
 	}
+	
+	@GetMapping("/estagios")
+	public String estagios(ModelMap model)
+	{
+		model.addAttribute("vaga", vagaService.findAll());
+		return "estagios";
+	}
+	
+	@GetMapping("/infovagas/{idVaga}")
+	public ModelAndView infovagas(ModelMap model,@PathVariable("idVaga") Long idVaga) throws Exception
+	{
+		ModelAndView mv = new ModelAndView("infovagas");
+		model.addAttribute("vagas", vagaService.getOneByIdVaga(idVaga));
+		return mv;
+	}
+	
+	
 
 }

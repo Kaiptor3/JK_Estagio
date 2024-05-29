@@ -42,6 +42,10 @@ private static final long serialVersionUID = 1L;
     @JoinColumn(name = "empresa_id", referencedColumnName = "id_empresa")
     private EmpresaEntity empresa;
 	
+	@OneToOne()
+	@JoinColumn(name = "aluno_id", referencedColumnName = "id_aluno")
+	private AlunoEntity aluno;
+	
 	@ManyToMany
 	@JoinTable(name="usuario_permissao",
 	joinColumns= {@JoinColumn(name="usuario_id", referencedColumnName = "id_usuario")},
