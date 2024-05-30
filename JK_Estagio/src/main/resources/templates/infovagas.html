@@ -9,6 +9,23 @@
 	
 	<div th:insert="~{layout/menu}"></div>
 	
+	<form name="candidatar_vaga" class="form-horizontal" method="post" th:action="@{/candidatar_vaga}"
+		th:object="${vagas}">
+		<div class="container-fluid">
+			
+				<div class="mb-3">
+					<label for="idVaga" class="form-label">Nome</label>
+					<input type="hidden" class="form-control"  id="idVaga" name="idVaga" required th:value="${vagas.idVaga}">
+				</div>
+		
+		<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+		
+		</form>
+</div>	
+		
+	
 	
 	<div id="tabela" class="container-fluid">
 		<h5 class="card-title">Vagas de estagios</h5>

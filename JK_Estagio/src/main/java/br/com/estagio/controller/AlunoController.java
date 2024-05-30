@@ -55,6 +55,8 @@ public class AlunoController {
 	{
 		
 		ModelAndView mv = new ModelAndView("alterar_aluno");
+		model.addAttribute("escola",escolaService.findAll());
+		model.addAttribute("curso",cursoService.findAll());
 		model.addAttribute("idAluno", idAluno);
 		model.addAttribute("aluno", alunoService.getOneByIdAluno(idAluno));
 		

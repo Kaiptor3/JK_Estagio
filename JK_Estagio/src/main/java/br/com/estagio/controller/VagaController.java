@@ -12,8 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.estagio.entity.UsuarioEntity;
 import br.com.estagio.entity.VagaEntity;
+import br.com.estagio.service.AlunoService;
 import br.com.estagio.service.UsuarioService;
 import br.com.estagio.service.VagaService;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -23,6 +25,9 @@ public class VagaController {
 	private VagaService vagaService;
 	
 	private String loginUsuarioLogado;
+	
+	@Autowired
+	private AlunoService alunoService;
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -115,8 +120,23 @@ public class VagaController {
 	public ModelAndView infovagas(ModelMap model,@PathVariable("idVaga") Long idVaga) throws Exception
 	{
 		ModelAndView mv = new ModelAndView("infovagas");
+		model.addAttribute("idVaga",idVaga);	
 		model.addAttribute("vagas", vagaService.getOneByIdVaga(idVaga));
+		mv.addObject("vagas", vagaService.getOneByIdVaga(idVaga));
 		return mv;
+	}
+	
+	@PostMapping("/candidatar_vaga")
+	public String candidatarVaga(ModelMap model, HttpSession session, @ModelAttribute("vagas") VagaEntity vagaEntity) throws Exception
+	{
+		System.out.println(vagaEntity.getIdVaga());
+		loginUsuarioLogado = (String)session.getAttribute("loginusuariologado");
+		UsuarioEntity usuario = new UsuarioEntity();
+		usuario = usuarioService.getOneByCpf(loginUsuarioLogado);
+		model.addAttribute("alunos", alunoService.getOneByIdAluno(usuario.getAluno().getIdAluno()));
+		System.out.println(usuario.getAluno().getIdAluno());
+		alunoService.candidatarVaga(usuario.getAluno().getIdAluno(),vagaEntity.getIdVaga());
+		return "sucesso";
 	}
 	
 	

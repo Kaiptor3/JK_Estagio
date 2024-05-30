@@ -144,6 +144,14 @@ private static final long serialVersionUID = 1L;
 	public void setEmpresa(EmpresaEntity empresa) {
 		this.empresa = empresa;
 	}
+
+	public AlunoEntity getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(AlunoEntity aluno) {
+		this.aluno = aluno;
+	}
 	
 	
 }

@@ -27,10 +27,6 @@
 				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
 				<input class="form-control" type="hidden" maxlength="50" name="idAluno" th:value="${idAluno}"/>
 				<div class="mb-3">
-					<label for="matricula" class="form-label">Matricula</label>
-					<input type="text" class="form-control" id="matricula" name="matricula" th:value="${aluno.Matricula}" required>
-				</div>
-				<div class="mb-3">
 					<label for="nome" class="form-label">Nome</label>
 					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" th:value="${aluno.Nome}" required>
 				</div>
@@ -43,14 +39,30 @@
     			$("#telefone").mask("(00) 0000-0000");
     			</script>
     			
-				<div class="mb-3">
-					<label for="periodo" class="form-label">Periodo</label>
-					<select class="form-select" aria-label="Selecione o setor" id="periodo" name="periodo" required>
-						<option value="">Selecione o periodo</option>
-						<option>Diurno</option>
-						<option>Noturno</option>
-					</select>
-				</div>
+    			<div class="mb-3">
+                 <label for="periodo" class="form-label">Periodo</label>
+    			<select class="form-select" aria-label="Selecione o setor" id="periodo" name="periodo" required>
+                  <option value="">Selecione o periodo</option>
+                  <option th:each="aluno : ${aluno}" th:text="${aluno.periodo}" th:value="${aluno.periodo}" th:selected="${aluno.periodo == aluno.periodo}">
+                </select>
+                   </div>
+                   
+                  <div class="mb-3">
+                 <label for="escola" class="form-label">Escola</label>
+    			<select class="form-select" aria-label="Selecione a escola" id="escola" name="escola" required>
+                  <option value="">Selecione a escola</option>
+                  <option th:each="escola : ${escola}" th:text="${escola.nome}" th:value="${escola.nome}" th:selected="${escola.nome == aluno.escola.nome}">
+                </select>
+                   </div>
+                   
+                   <div class="mb-3">
+                 <label for="curso" class="form-label">Curso</label>
+    			<select class="form-select" aria-label="Selecione o curso" id="curso" name="curso" required>
+                  <option value="">Selecione o curso</option>
+                  <option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.nome}" th:selected="${curso.nome == aluno.curso.nome}">
+                </select>
+                   </div>
+    			
 				<div class="mb-e">
 					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
 				</div>

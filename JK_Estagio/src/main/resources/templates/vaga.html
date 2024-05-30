@@ -91,36 +91,7 @@
 
 </div>
 
-<br>
-		<div>
-		<h5 id="tabela1" class="card-title">Vagas cadastradas</h5>
-		<table id="tabela" class="table table-sn table-striped table-hover table-bordered" >
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Curso</th>
-					<th>Valor da bolsa</th>
-					<th>Beneficios</th>
-					<th class="col-1"></th>
-					<th class="col-1"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="vaga : ${vaga}">
-					<td th:text="${vaga.IdVaga}"></td>
-					<td th:text="${vaga.curso}"></td>
-					<td th:text="${vaga.valorBolsa}"></td>
-					<td th:text="${vaga.beneficios}"></td>
-
-					<!--Termina Exclusão-->
-				</tr>
-
-			</tbody>
-
-		</table>
-		</div>
-
-
+		
 	<div th:insert="~{layout/rodape}"></div>
 
 </body>

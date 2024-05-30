@@ -66,6 +66,12 @@ public class AlunoServiceImpl implements AlunoService {
 		}
 		return mensagem;
 	}
+
+	@Override
+	public void candidatarVaga(Long idAluno, Long idVaga) {
+		// TODO Auto-generated method stub
+		alunoRepository.candidatarVaga(idAluno, idVaga);
+	}
 	
 
 }
