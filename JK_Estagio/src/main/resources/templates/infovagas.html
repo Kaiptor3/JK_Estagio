@@ -13,8 +13,9 @@
 		th:object="${vagas}">
 		<div class="container-fluid">
 			
+			<p th:value="${vagas.Nome}"></p>
+			
 				<div class="mb-3">
-					<label for="idVaga" class="form-label">Nome</label>
 					<input type="hidden" class="form-control"  id="idVaga" name="idVaga" required th:value="${vagas.idVaga}">
 				</div>
 		

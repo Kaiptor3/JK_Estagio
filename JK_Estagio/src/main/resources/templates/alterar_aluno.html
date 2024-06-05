@@ -51,7 +51,7 @@
                  <label for="escola" class="form-label">Escola</label>
     			<select class="form-select" aria-label="Selecione a escola" id="escola" name="escola" required>
                   <option value="">Selecione a escola</option>
-                  <option th:each="escola : ${escola}" th:text="${escola.nome}" th:value="${escola.nome}" th:selected="${escola.nome == aluno.escola.nome}">
+                  <option th:each="escola : ${escola}" th:text="${escola.nome}" th:value="${escola.idEscola}" th:selected="${escola.idEscola == aluno.escola.idEscola}">
                 </select>
                    </div>
                    
@@ -59,7 +59,7 @@
                  <label for="curso" class="form-label">Curso</label>
     			<select class="form-select" aria-label="Selecione o curso" id="curso" name="curso" required>
                   <option value="">Selecione o curso</option>
-                  <option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.nome}" th:selected="${curso.nome == aluno.curso.nome}">
+                  <option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.idCurso}" th:selected="${curso.idCurso == aluno.curso.idCurso}">
                 </select>
                    </div>
     			

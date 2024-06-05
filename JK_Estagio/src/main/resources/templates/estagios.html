@@ -4,15 +4,22 @@
 <head th:insert="~{layout/cabecalho}">
 	<title>Página de Vagas de Estagios</title>
 </head>
+<style>
+	
+		#margin{
+			margin: 0px 10px 10px 10px;
+		}
+		
+</style>
 
 <body>
 	
 	<div th:insert="~{layout/menu}"></div>
 	
 	
-	<div id="tabela" class="container-fluid">
+<div id="margin">
 		<h5 class="card-title">Vagas de estagios</h5>
-		<table class="table table-sn table-striped table-hover table-bordered">
+		<table id="vagas" class="table table-sn table-striped table-hover table-bordered">
 			<thead>
 				<tr>
 					<th class="col-1">Vaga</th>
@@ -24,14 +31,56 @@
 				<tr th:each="vaga : ${vaga}">
 					<td th:text="${vaga.IdVaga}"></td>
 					<td th:text="${vaga.Nome}"></td>
-					<td><a class="btn btn-sm btn-warning" th:href="@{infovagas/{idVaga}(idVaga=${vaga.IdVaga})}" >Ver mais</a></td>
+					<td><a type="button" class="btn btn-outline-warning" th:href="@{infovagas/{idVaga}(idVaga=${vaga.IdVaga})}" >Ver mais</a></td>
 				</tr>
 
 			</tbody>
 
 		</table>
 	</div>
+	<script>
+	$(document).ready( function (){
+    var table = new DataTable('#vagas', {
+		pageLength: 96,	/*Coloquei quantidade completa de itens pois não está salvando a disponibilidade de itens de páginas diferentes*/
+		layout: {
+		    topStart: 
+		    {       
+		            buttons: [
+		               /* {
+		                    extend: 'copyHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'excelHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'csvHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },*/
+		                {
+		                    extend: 'pdfHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'print',
+		                    title: 'Disponibilidade Docente'
+		                }
+		            ]
+		            
+		    }
+		    },	
 	
+    language: 
+	{
+		url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+    },
+	
+	
+});
+
+} );
+</script>
 	
 	
 	<div th:insert="~{layout/rodape}"></div>

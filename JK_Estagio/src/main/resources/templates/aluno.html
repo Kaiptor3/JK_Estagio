@@ -11,6 +11,10 @@
 		#botao{
 			background-color: #0a4275;
 		}	
+		#margin{
+			margin: 0px 10px 10px 10px;
+		}
+		
 </style>
 
 <body>
@@ -70,31 +74,32 @@
 		</div>
 		</div><!--Começa lista de docentes-->
 		<br>
-		<div id="tabela" class="container-fluid" sec:authorize="hasAnyAuthority('administrador')">
+<div id="margin">		
+		<div sec:authorize="hasAnyAuthority('administrador')">
 		<h5 class="card-title">Alunos cadastrados</h5>
-		<table class="table table-sn table-striped table-hover table-bordered">
+		<table id="aluno" class="table table-sn table-striped table-hover table-bordered">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th class="col-5">Nome</th>
 					<th>Telefone</th>
 					<th>Periodo</th>
-					<th>Curso</th>
+					
 					<th class="col-1"></th>
 					<th class="col-1"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="aluno : ${aluno}">
+				<tr  th:each="aluno : ${aluno}">
 					<td th:text="${aluno.IdAluno}"></td>
 					<td th:text="${aluno.Nome}"></td>
 					<td th:text="${aluno.Telefone}"></td>
 					<td th:text="${aluno.Periodo}"></td>
-					<td th:text="${aluno.Curso}"></td>
-					<td><a class="btn btn-sm btn-warning" th:href="@{alterar_aluno/{idAluno}(idAluno=${aluno.IdAluno})}">Alterar</a></td>
+					
+					<td><a type="button" class="btn btn-outline-warning" th:href="@{alterar_aluno/{idAluno}(idAluno=${aluno.IdAluno})}">Alterar</a></td>
 					<!--Começa o excluir-->
 					<td>
-						<a class="btn btn-sm btn-danger"
+						<a type="button" class="btn btn-outline-danger"
 							th:href="@{excluir_aluno/{idAluno}(idAluno=${aluno.IdAluno})}"
 							onclick="if (confirm('Deseja realmente excluir o aluno?')){return true;}else{event.stopPropagation();event.preventDefault();};">
 							Excluir
@@ -106,37 +111,60 @@
 			</tbody>
 
 		</table>
+		</div>
+
 	
+	<script>
+	$(document).ready( function (){
+    var table = new DataTable('#aluno', {
+		pageLength: 96,	/*Coloquei quantidade completa de itens pois não está salvando a disponibilidade de itens de páginas diferentes*/
+		layout: {
+		    topStart: 
+		    {       
+		            buttons: [
+		               /* {
+		                    extend: 'copyHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'excelHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'csvHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },*/
+		                {
+		                    extend: 'pdfHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'print',
+		                    title: 'Disponibilidade Docente'
+		                }
+		            ]
+		            
+		    }
+		    },	
+	
+    language: 
+	{
+		url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+    },
+	
+	
+});
+
+} );
+</script>
+</div>	
 	</form>
 	
-	<br>
-</div>		
-        <div id="tabela" class="container-fluid" sec:authorize="hasAnyAuthority('empresa')">
-		<h5 class="card-title">Alunos cadastrados</h5>
-		<table class="table table-sn table-striped table-hover table-bordered">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th class="col-5">Nome</th>
-					<th>Telefone</th>
-					<th>Periodo</th>
-					<th>Curso</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="aluno : ${aluno}">
-					<td th:text="${aluno.IdAluno}"></td>
-					<td th:text="${aluno.Nome}"></td>
-					<td th:text="${aluno.Telefone}"></td>
-					<td th:text="${aluno.Periodo}"></td>
-					<td th:text="${aluno.Curso}"></td>
-	         	<!--Termina Exclusão-->
-				</tr>
 
-			</tbody>
+		
+       
+	
 
-		</table>
-	</div>
 
 
 	<div th:insert="~{layout/rodape}"></div>

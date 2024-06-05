@@ -37,7 +37,7 @@ public class VagaController {
 	@GetMapping("/vaga")
 	public String vaga(ModelMap model)
 	{
-		model.addAttribute("vaga", vagaService.findAll());
+		model.addAttribute("vagas", vagaService.findAll());
 		return "vaga";
 	}
 	
