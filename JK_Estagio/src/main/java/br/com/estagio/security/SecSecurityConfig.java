@@ -36,7 +36,7 @@ public class SecSecurityConfig {
 				)
 		        .formLogin(formLogin -> formLogin
 		        		.defaultSuccessUrl("/principal", true)
-		        		.permitAll()	
+		        		.permitAll()
 		        		)
 		        .rememberMe(rememberMe -> rememberMe.key("Abcdefghijkn..."))
 		        .logout(logout -> logout.logoutUrl("/signout").permitAll());

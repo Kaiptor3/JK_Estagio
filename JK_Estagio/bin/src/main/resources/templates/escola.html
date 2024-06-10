@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{layout/cabecalho}">
+	<title>Página de Escolas</title>
+</head>
+<style>
+		#botao{
+			background-color: #0a4275;
+		}
+		#margin{
+			margin: 0px 10px 10px 10px;
+		}
+		
+</style>
+
+<body>
+	<div th:insert="~{layout/menu}"></div>
+
+	<form name="salvar_escola" class="form-horizontal" method="post" th:action="@{/salvar_escola}"
+		th:object="${escolaEntity}">
+		<div class="container-fluid">
+			<h2>Escola</h2>
+
+			<!--Começa cadastro de docentes -->
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" required>
+				</div>
+				<div class="mb-3">
+					<label for="estado" class="form-label">Estado</label>
+					<input type="text" class="form-control" maxlength="45" id="estado" name="estado" required>
+				</div>
+				<div class="mb-3">
+					<label for="bairro" class="form-label">Bairro</label>
+					<input type="text" class="form-control" maxlength="45"  id="bairro" name="bairro" required>
+				</div>
+				<div class="mb-3">
+					<label for="rua" class="form-label">Rua</label>
+					<input type="text" class="form-control" maxlength="45" id="rua" name="rua" required>
+				</div>
+				<div class="mb-3">
+					<label for="numero" class="form-label">Numero</label>
+					<input type="text" class="form-control" maxlength="45" id="numero" name="numero" required>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" class="form-control" id="email" name="email"
+						placeholder="escola@faetec.br" required>
+				</div>
+		
+				<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+			</div>
+			<!-- Termina cadastro de docentes -->
+		</div>
+		<!--Começa lista de docentes-->
+		<br>
+<div id="margin">
+		<h5 id="tabela1" class="card-title">Escolas cadastradas</h5>
+		<table id="escola" class="table table-sn table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Estado</th>
+					<th>Bairro</th>
+					<th>Rua</th>
+					<th>Numero</th>
+					<th class="co	l-1"></th>
+					<th class="col-1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="escola : ${escola}">
+					<td th:text="${escola.IdEscola}"></td>
+					<td th:text="${escola.Nome}"></td>
+					<td th:text="${escola.Email}"></td>
+					<td th:text="${escola.Estado}"></td>
+					<td th:text="${escola.Bairro}"></td>
+					<td th:text="${escola.Rua}"></td>
+					<td th:text="${escola.Numero}"></td>
+					<td><a type="button" class="btn btn-outline-warning" th:href="@{alterar_escola/{idEscola}(idEscola=${escola.IdEscola})}">Alterar</a></td>
+					<!--Começa o excluir-->
+					<td>
+						<a type="button" class="btn btn-outline-danger"
+							th:href="@{excluir_escola/{idEscola}(idEscola=${escola.IdEscola})}"
+							onclick="if (confirm('Deseja realmente excluir o aluno?')){return true;}else{event.stopPropagation();event.preventDefault();};">
+							Excluir
+						</a>
+					</td>
+					<!--Termina Exclusão-->
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+	<script>
+	$(document).ready( function (){
+    var table = new DataTable('#escola', {
+		pageLength: 96,	/*Coloquei quantidade completa de itens pois não está salvando a disponibilidade de itens de páginas diferentes*/
+		layout: {
+		    topStart: 
+		    {       
+		            buttons: [
+		               /* {
+		                    extend: 'copyHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'excelHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'csvHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },*/
+		                {
+		                    extend: 'pdfHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'print',
+		                    title: 'Disponibilidade Docente'
+		                }
+		            ]
+		            
+		    }
+		    },	
+	
+    language: 
+	{
+		url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+    },
+	
+	
+});
+
+} );
+</script>
+	</form>
+
+	<div th:insert="~{layout/rodape}"></div>
+
+</body>
+
+</html>

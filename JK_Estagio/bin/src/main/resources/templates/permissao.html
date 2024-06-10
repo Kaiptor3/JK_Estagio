@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="~{layout/cabecalho}">
+		<title>Cursos</title>
+	</head>
+	<style>
+		#botao{
+			background-color: #0a4275;
+		}
+		#margin{
+			margin: 0px 10px 10px 10px;
+		}
+		
+</style>
+	<body>
+		<div th:insert="~{layout/menu}"></div>
+		
+		<form name="salvar_permissao" class="form-horizontal" method="post" th:action="@{/salvar_permissao}"
+		th:object="${permissaoEntity}">
+		<div class="container-fluid">
+			<h2>Permissões</h2>
+		
+		
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" id="nome" name="nome" required>
+				</div>
+
+				<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+				
+		</div>
+		<br>
+<div id="margin">	
+		<h5 id="tabela1" class="card-title">Permissões cadastradas</h5>
+		<table id="permissao" class="table table-sn table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th class="col-1">ID</th>
+					<th>Nome</th>	
+					<th class="col-1"></th>
+					<th class="col-1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="permissao : ${permissao}">
+					<td th:text="${permissao.IdPermissao}"></td>
+					<td th:text="${permissao.Nome}"></td>
+					<td><a type="button" class="btn btn-outline-warning" th:href="@{alterar_permissao/{idPermissao}(idPermissao=${permissao.IdPermissao})}">Alterar</a></td>
+					<td>
+						<a type="button" class="btn btn-outline-danger"
+							th:href="@{excluir_permissao/{idPermissao}(idPermissao=${permissao.IdPermissao})}"
+							onclick="if (confirm('Deseja realmente excluir o curso?')){return true;}else{event.stopPropagation();event.preventDefault();};">
+							Excluir
+						</a>
+					</td>
+					<!--Termina Exclusão-->
+				</tr>
+
+			</tbody>
+
+		</table>
+		</div>
+		<script>
+	$(document).ready( function (){
+    var table = new DataTable('#permissao', {
+		pageLength: 96,	/*Coloquei quantidade completa de itens pois não está salvando a disponibilidade de itens de páginas diferentes*/
+		layout: {
+		    topStart: 
+		    {       
+		            buttons: [
+		               /* {
+		                    extend: 'copyHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'excelHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'csvHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },*/
+		                {
+		                    extend: 'pdfHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'print',
+		                    title: 'Disponibilidade Docente'
+		                }
+		            ]
+		            
+		    }
+		    },	
+	
+    language: 
+	{
+		url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+    },
+	
+	
+});
+
+} );
+</script>
+		</form>					
+		</div>
+		<div th:insert="~{layout/rodape}"></div>
+		
+</body>
+		
+</html>
