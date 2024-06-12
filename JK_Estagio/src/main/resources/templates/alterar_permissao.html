@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{layout/cabecalho}">
+	<meta charset="ISO-8859-1">
+	<title>Página de Permissões</title>
+</head>
+<style>
+		#P{
+			margin: 0px 0px 20px 0px;
+		}
+		#botao{
+			background-color: #0a4275;
+		}
+		
+</style>
+
+<body>
+	<div th:insert="~{layout/menu}"></div>
+	
+	<form name="alterar_permissao" class="form-horizontal" method="post" th:action="@{/alterar_permissao}"
+		th:object="${permissaoEntity}">
+		<div class="container-fluid">
+			<h2>Alterar Permissões</h2>
+
+			<!--Começa cadastro de docentes -->
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<input class="form-control" type="hidden" maxlength="50" name="idPermissao" th:value="${idPermissao}"/>
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" th:value="${permissao.Nome}" required>
+				</div>
+				
+				<div class="mb-e">
+									<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+								</div>
+							</div>
+							<!-- Termina cadastro de docentes -->
+						</div>
+						<br>
+						
+					</form>
+					
+					<div th:insert="~{layout/rodape}"></div>
+					
+</body>
+</html>

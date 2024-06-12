@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{layout/cabecalho}">
+
+	<title>Página de Vagas</title>
+</head>
+
+<style>
+		#botao{
+			background-color: #0a4275;
+		}
+</style>
+
+<body>
+	<div th:insert="~{layout/menu}"></div>
+
+	<form name="alterar_vaga" class="form-horizontal" method="post" th:action="@{/alterar_vaga}"
+		th:object="${vagaEntity}">
+		<div class="container-fluid">
+			<h2>Alterar Vaga</h2>
+
+			<!--Começa cadastro de docentes -->
+				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				<input class="form-control" type="hidden" maxlength="50" name="idVaga" th:value="${idVaga}"/>
+			
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" th:value="${vaga.Nome}" required>
+				</div>
+				<div class="mb-3">
+					<label for="valorBolsa" class="form-label">Valor da Bolsa</label>
+					<input type="text" class="form-control" id="valorBolsa" name="valorBolsa" th:value="${vaga.ValorBolsa}" required>
+				</div>
+				<div class="mb-3">
+					<label for="bairro" class="form-label">Bairro</label>
+					<input type="text" class="form-control" id="bairro" name="bairro" th:value="${vaga.Bairro}" required>
+				</div>
+				<div class="mb-3">
+				    <label for="curso" class="form-label">Curso</label>
+				    <select class="form-select" aria-label="Selecione o curso" id="curso" name="curso" required>
+				    <option value="">Selecione o curso</option>
+				    <option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.idCurso}" th:selected="${curso.idCurso == vaga.curso.idCurso}">
+				    </select>
+				</div>
+				<div class="mb-3">
+				    <label for="empresa" class="form-label">Empresa</label>
+				    <select class="form-select" aria-label="Selecione a empresa" id="empresa" name="empresa" required>
+				     <option value="">Selecione a Empresa</option>
+				     <option th:each="empresa : ${empresa}" th:text="${empresa.nome}" th:value="${empresa.idEmpresa}" th:selected="${empresa.idEmpresa == vaga.empresa.idEmpresa}">
+				    </select>
+				 </div>
+				</div>
+				<div class="mb-e">
+					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+				</div>
+			</div>
+			<!-- Termina cadastro de docentes -->
+		</div>
+		<br>
+		
+	</form>
+
+	<div th:insert="~{layout/rodape}"></div>
+
+</body>
+
+</html>
