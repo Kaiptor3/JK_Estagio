@@ -35,9 +35,13 @@ private static final long serialVersionUID = 1L;
 
 	@Column(name = "beneficios")
 	private String beneficios;
-
-	@Column(name = "curso")
-	private String curso;
+	
+	@Column(name = "bairro")
+	private String bairro;
+	
+	@OneToOne()
+    @JoinColumn(name = "curso_id", referencedColumnName = "id_curso")
+    private CursoEntity curso;
 	
 	@Column(name = "empresa_id", insertable=false, updatable=false)
 	private Long empresaId;
@@ -73,11 +77,11 @@ private static final long serialVersionUID = 1L;
 		this.beneficios = beneficios;
 	}
 
-	public String getCurso() {
+	public CursoEntity getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(CursoEntity curso) {
 		this.curso = curso;
 	}
 
@@ -103,6 +107,14 @@ private static final long serialVersionUID = 1L;
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public List<AlunoEntity> getAlunos() {

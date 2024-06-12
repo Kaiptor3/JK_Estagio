@@ -3,7 +3,7 @@
 
 <head th:insert="~{layout/cabecalho}">
 
-	<title>Página de Alunos</title>
+	<title>Página de Escolas</title>
 </head>
 
 <style>
@@ -18,7 +18,7 @@
 	<form name="alterar_escola" class="form-horizontal" method="post" th:action="@{/alterar_escola}"
 		th:object="${escolaEntity}">
 		<div class="container-fluid">
-			<h2>Alterar Aluno</h2>
+			<h2>Alterar Escolas</h2>
 
 			<!--Começa cadastro de docentes -->
 				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>

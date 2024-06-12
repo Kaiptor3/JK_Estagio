@@ -22,11 +22,7 @@ public class CursoServiceImpl implements CursoService{
 		if (cursoEntity.getNome() == null) {
 			this.mensagem = "Digite o nome do curso.";
 			throw new Exception("Preencha o nome curso.");	
-			
-		} else if (cursoEntity.getPeriodo() == null) {
-			this.mensagem = "Digite o periodo do curso.";
-			throw new Exception("Preencha o periodo do curso.");	
-		} else {
+		} {
 			cursoRepository.saveAndFlush(cursoEntity);
 			this.mensagem = "Curso cadastrado com sucesso";
 		}

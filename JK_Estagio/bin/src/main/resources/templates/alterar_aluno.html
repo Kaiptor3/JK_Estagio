@@ -17,7 +17,7 @@
 
 <body>
 	<div th:insert="~{layout/menu}"></div>
-
+	
 	<form name="alterar_aluno" class="form-horizontal" method="post" th:action="@{/alterar_aluno}"
 		th:object="${alunoEntity}">
 		<div class="container-fluid">
@@ -32,7 +32,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="telefone" class="form-label">Telefone</label>
-					<input type="text" class="form-control" id="telefone" name="telefone" data-mask="(00) 0000-0000" data-mask-selectonfocus="true" th:value="${aluno.Telefone}" required>
+					<input type="text" class="form-control" id="telefone" name="telefone" data-mask="(00) 0000-0000" data-mask-selectonfocus="true" th:value="${aluno.Telefone}" required minlength="14">
 				</div>
 				
 				<script type="text/javascript">

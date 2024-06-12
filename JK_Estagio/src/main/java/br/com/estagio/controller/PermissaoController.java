@@ -21,7 +21,7 @@ public class PermissaoController {
 	
 	
 	@GetMapping("/permissao") //nome que eu quiser colocar
-	public String docente(ModelMap model)
+	public String permissao(ModelMap model)
 	{
 		model.addAttribute("permissao", permissaoService.findAll());
 		return "permissao"; //caminho real do arquivo

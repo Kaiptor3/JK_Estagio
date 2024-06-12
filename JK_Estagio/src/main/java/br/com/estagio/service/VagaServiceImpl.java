@@ -26,10 +26,9 @@ public class VagaServiceImpl implements VagaService {
 		} else if (vagaEntity.getValorBolsa() == null){
 			this.mensagem = "Digite o valor da bolsa.";
 			throw new Exception("Preencha o valor da bolsa");
-
-		} else if (vagaEntity.getBeneficios() == null) {
-			this.mensagem = "Digite os beneficios da vaga.";
-			throw new Exception("Preencha os beneficios da vaga.");
+		} else if (vagaEntity.getBairro() == null) {
+			this.mensagem = "Digite o bairro da vaga.";
+			throw new Exception("Preencha o bairro da vaga.");
 		} else if (vagaEntity.getCurso() == null) {
 			this.mensagem = "Digite o curso";
 			throw new Exception("Preencha o curso");

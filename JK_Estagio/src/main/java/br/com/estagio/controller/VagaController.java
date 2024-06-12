@@ -13,9 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.estagio.entity.UsuarioEntity;
 import br.com.estagio.entity.VagaEntity;
 import br.com.estagio.service.AlunoService;
+import br.com.estagio.service.CursoService;
+import br.com.estagio.service.EmpresaService;
 import br.com.estagio.service.UsuarioService;
 import br.com.estagio.service.VagaService;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -32,12 +33,19 @@ public class VagaController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-
+	@Autowired
+	private CursoService cursoService;
+	
+	@Autowired
+	private EmpresaService empresaService;
+	
 	
 	@GetMapping("/vaga")
 	public String vaga(ModelMap model)
 	{
 		model.addAttribute("vagas", vagaService.findAll());
+		model.addAttribute("curso", cursoService.findAll());
+		model.addAttribute("empresa", empresaService.findAll());
 		return "vaga";
 	}
 	
@@ -61,6 +69,8 @@ public class VagaController {
 		ModelAndView mv = new ModelAndView("alterar_vaga");
 		model.addAttribute("idVaga", idVaga);
 		model.addAttribute("vaga", vagaService.getOneByIdVaga(idVaga));
+		model.addAttribute("curso", cursoService.findAll());
+		model.addAttribute("empresa", empresaService.findAll());
 		
 		return mv;
 	}

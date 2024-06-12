@@ -43,7 +43,8 @@
                  <label for="periodo" class="form-label">Periodo</label>
     			<select class="form-select" aria-label="Selecione o setor" id="periodo" name="periodo" required>
                   <option value="">Selecione o periodo</option>
-                  <option th:each="aluno : ${aluno}" th:text="${aluno.periodo}" th:value="${aluno.periodo}" th:selected="${aluno.periodo == aluno.periodo}">
+				  <option>Diurno</option>
+				  <option>Noturno</option>
                 </select>
                    </div>
                    

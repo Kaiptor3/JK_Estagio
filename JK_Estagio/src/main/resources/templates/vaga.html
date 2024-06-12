@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="~{layout/cabecalho}">
-	<title>Página de Alunos</title>
+	<title>Página de Vagas</title>
 </head>
 
 <style>
@@ -17,7 +17,6 @@
 
 	
 	<div th:insert="~{layout/menu}"></div>
-<div sec:authorize="hasAnyAuthority('administrador', 'empresa')">
 	<form name="salvar_vaga	" class="form-horizontal" method="post" th:action="@{/salvar_vaga}"
 		th:object="${vagaEntity}">
 		<div class="container-fluid">
@@ -26,20 +25,31 @@
 			<!--Começa cadastro de docentes -->
 				<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
 				<div class="mb-3">
-					<label for="requisitos" class="form-label">Periodo Necessario</label>
-					<input type="text" class="form-control" maxlength="45" id="requisitos" name="requisitos" required>
+					<label for="nome" class="form-label">Nome da vaga</label>
+					<input type="text" class="form-control" maxlength="45" id="nome" name="nome" required>
 				</div>
 				<div class="mb-3">
 					<label for="valorBolsa" class="form-label">Valor da bolsa</label>
 					<input type="text" class="form-control" maxlength="45" id="valorBolsa" name="valorBolsa" required>
 				</div>
 				<div class="mb-3">
-					<label for="beneficios" class="form-label">Beneficios</label>
-					<input type="text" class="form-control" maxlength="45" id="beneficios" name="beneficios" required>
+					<label for="bairro" class="form-label">Bairro</label>
+					<input type="text" class="form-control" maxlength="45" id="bairro" name="bairro" required>
 				</div>
 				<div class="mb-3">
-					<label for="curso" class="form-label">Curso</label>
-					<input type="text" class="form-control" maxlength="45" id="curso" name="curso" required>
+				<label for="curso" class="form-label">Curso</label>
+				<select class="form-select" aria-label="Selecione o curso" id="curso" name="curso" required>
+					<option value="">Selecione o curso</option>
+					<option th:each="curso : ${curso}" th:text="${curso.nome}" th:value="${curso.idCurso}" >
+				</select>
+				</div>
+				
+				<div class="mb-3">
+					<label for="empresa" class="form-label">Empresa</label>
+					<select class="form-select" aria-label="Selecione a Empresa" id="empresa" name="empresa" required>
+					<option value="">Selecione a Empresa</option>
+					<option th:each="empresa : ${empresa}" th:text="${empresa.nome}" th:value="${empresa.idEmpresa}" >
+					</select>
 				</div>
 				<div class="mb-e">
 					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
@@ -59,7 +69,8 @@
 					<th>Nome</th>
 					<th>Curso</th>
 					<th>Valor da bolsa</th>
-					<th>Beneficios</th>
+					<th>Empresa</th>
+					<th>Bairro</th>
 					<th class="col-1"></th>
 					<th class="col-1"></th>
 				</tr>
@@ -68,9 +79,10 @@
 				<tr th:each="vaga : ${vagas}">
 					<td th:text="${vaga.IdVaga}"></td>
 					<td th:text="${vaga.nome}"></td>
-					<td th:text="${vaga.curso}"></td>
+					<td th:text="${vaga.curso.nome}"></td>
 					<td th:text="${vaga.valorBolsa}"></td>
-					<td th:text="${vaga.beneficios}"></td>
+					<td th:text="${vaga.empresa.nome}"></td>
+					<td th:text="${vaga.bairro}"></td>
 					<td><a type="button" class="btn btn-outline-warning" th:href="@{alterar_vaga/{idVaga}(idVaga=${vaga.IdVaga})}">Alterar</a></td>
 					<!--Começa o excluir-->
 					<td>
