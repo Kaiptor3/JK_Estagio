@@ -70,4 +70,14 @@ public class VagaServiceImpl implements VagaService {
 		return vagaRepository.getOneByEmpresaId(idEmpresa);
 	}
 
+	@Override
+	public List<VagaEntity> findAllByEmpresaId(Long empresaId) throws Exception {
+		// TODO Auto-generated method stub
+		return vagaRepository.findAllByEmpresaId(empresaId);
+	}
+
+	
+
+
+
 }

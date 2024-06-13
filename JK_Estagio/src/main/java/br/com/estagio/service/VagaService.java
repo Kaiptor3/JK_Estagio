@@ -11,6 +11,7 @@ public interface VagaService {
 	VagaEntity getOneByIdVaga (Long idVaga) throws Exception;
 	String deleteById(Long idVaga) throws Exception;
 	VagaEntity getOneByEmpresaId(Long empresaId) throws Exception;
+	List<VagaEntity> findAllByEmpresaId(Long empresaId) throws Exception;
 	
 
 }

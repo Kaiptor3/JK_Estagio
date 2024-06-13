@@ -104,7 +104,7 @@ public class VagaController {
 		loginUsuarioLogado = (String)session.getAttribute("loginusuariologado");
 		UsuarioEntity usuario = new UsuarioEntity();
 		usuario = usuarioService.getOneByCpf(loginUsuarioLogado);
-		model.addAttribute("listvagas", vagaService.getOneByEmpresaId(usuario.getEmpresa().getIdEmpresa()));
+		model.addAttribute("listvagas", vagaService.findAllByEmpresaId(usuario.getEmpresa().getIdEmpresa()));
 		return "relatorio";
 	}
 	
