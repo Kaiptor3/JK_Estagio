@@ -32,6 +32,12 @@
 					<label for="valorBolsa" class="form-label">Valor da Bolsa</label>
 					<input type="text" class="form-control" id="valorBolsa" name="valorBolsa" th:value="${vaga.ValorBolsa}" required>
 				</div>
+				
+				<script type="text/javascript">
+				 $("#valorBolsa").mask("0.000,00");
+				</script>
+				
+				
 				<div class="mb-3">
 					<label for="bairro" class="form-label">Bairro</label>
 					<input type="text" class="form-control" id="bairro" name="bairro" th:value="${vaga.Bairro}" required>

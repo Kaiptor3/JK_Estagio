@@ -14,13 +14,14 @@
 <body>
 	<div th:insert="~{layout/menu}"></div>
 
-
+<div id="margin">
 		<h5 class="card-title">Suas Vagas</h5>
 		<table id="relatorio" class="table table-sn table-striped table-hover table-bordered">
 			<thead>
 				<tr>
 					<th class="col-1">Vaga</th>
 					<th class="col-5">Nome</th>	
+					<th class="col-3">Bairro</th>	
 				    <th class="col-1"></th>
 				</tr>
 			</thead>
@@ -28,6 +29,7 @@
 				<tr th:each="vaga : ${listvagas}">
 					<td th:text="${vaga.IdVaga}"></td>
 					<td th:text="${vaga.Nome}"></td>
+					<td th:text="${vaga.Bairro}"></td>
 					<td><a type="button" class="btn btn-outline-warning" th:href="@{vagas/{idVaga}(idVaga=${vaga.IdVaga})}" >Candidatos</a></td>
 				</tr>
 
@@ -35,6 +37,7 @@
 
 		</table>
 	</div>
+</div>
 <script>
 	$(document).ready( function (){
     var table = new DataTable('#relatorio', {

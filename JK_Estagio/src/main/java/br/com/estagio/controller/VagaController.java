@@ -41,11 +41,12 @@ public class VagaController {
 	
 	
 	@GetMapping("/vaga")
-	public String vaga(ModelMap model)
+	public String vaga(ModelMap model, HttpSession session)
 	{
 		model.addAttribute("vagas", vagaService.findAll());
 		model.addAttribute("curso", cursoService.findAll());
 		model.addAttribute("empresa", empresaService.findAll());
+		
 		return "vaga";
 	}
 	
