@@ -20,22 +20,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador','empresa')">
-          <a class="nav-link" href="/aluno">Alunos</a> 
-        </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
-          <a class="nav-link" href="/curso">Cursos</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador', 'empresa')">
+		<li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+		  <a class="nav-link" href="/escola">Escolas</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+	     <a class="nav-link" href="/curso">Cursos</a>
+		 </li>
+		 <li class="nav-item" sec:authorize="hasAnyAuthority('administrador','empresa')">
+		   <a class="nav-link" href="/aluno">Alunos</a> 
+		 </li>
+		 <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+		    <a class="nav-link" href="/empresa">Empresas</a>
+		 </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('empresa')">
           <a class="nav-link" href="/vaga">Vagas</a>
         </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
-          <a class="nav-link" href="/escola">Escolas</a>
-        </li>
 		<li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
-		   <a class="nav-link" href="/empresa">Empresas</a>
+		  <a class="nav-link" href="/usuario">Usuarios</a>
 		</li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('empresa')">
+        <li class="nav-item" sec:authorize="hasAnyAuthority('empresa', 'administrador')">
           <a class="nav-link" href="/relatorio">Relatórios</a>
         </li>
         

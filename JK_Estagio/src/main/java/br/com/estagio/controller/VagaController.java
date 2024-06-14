@@ -139,12 +139,11 @@ public class VagaController {
 	@PostMapping("/candidatar_vaga")
 	public String candidatarVaga(ModelMap model, HttpSession session, @ModelAttribute("vagas") VagaEntity vagaEntity) throws Exception
 	{
-		System.out.println(vagaEntity.getIdVaga());
+		
 		loginUsuarioLogado = (String)session.getAttribute("loginusuariologado");
 		UsuarioEntity usuario = new UsuarioEntity();
 		usuario = usuarioService.getOneByCpf(loginUsuarioLogado);
 		model.addAttribute("alunos", alunoService.getOneByIdAluno(usuario.getAluno().getIdAluno()));
-		System.out.println(usuario.getAluno().getIdAluno());
 		alunoService.candidatarVaga(usuario.getAluno().getIdAluno(),vagaEntity.getIdVaga());
 		return "sucesso";
 	}

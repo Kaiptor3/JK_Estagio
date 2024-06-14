@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="~{layout/cabecalho}">
+		<meta charset="ISO-8859-1">
+		<title>Sucesso</title>
+</head>
+<style>
+	        #img{
+				
+				height: 678px;
+				width: 100%;
+			}
+			#butao{
+				margin-left:auto;
+				margin-right: auto;
+				display: block;
+				width: 15%;
+			}
+			*{
+				text-align: center;
+			}
+			#all{
+
+				margin: 250px 0px 310px 0px;
+			}
+			.texto{
+				color: white;
+			}
+			
+</style>
+<body background="/img/fundo1.png">
+		
+		<div th:insert="~{layout/menu}"></div>
+		
+		<!--<img id="img" src="/img/fundo1.png">-->
+		
+<div id="all">		
+		<h2 class="texto">Parabéns!</h2>
+		<h3 class="texto">Você se candidatou a essa vaga</h3>
+		<h3 class="texto">Agora é só esperar que a empresa entrará em contato com você</h3>
+					
+</div>	
+
+<div th:insert="~{layout/rodape}"></div>	
+	</body>
+		
+</html>

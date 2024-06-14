@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="~{layout/cabecalho}">
+		<title>Usuarios</title>
+	</head>
+	<style>
+		#botao{
+			background-color: #0a4275;
+		}
+		#margin{
+			margin: 0px 10px 10px 10px;
+		}
+		
+</style>
+	<body>
+		<div th:insert="~{layout/menu}"></div>
+		
+		<form name="salvar_usuario" class="form-horizontal" method="post" th:action="@{/salvar_usuario}"
+				th:object="${usuarioEntity}">
+				<div class="container-fluid">
+					<h2>Usuarios</h2>
+
+					<!--Começa cadastro de docentes -->
+					
+						<div class="alert alert-sucess" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+						<div class="mb-3">
+							<label for="nome" class="form-label">Nome</label>
+							<input type="text" class="form-control" maxlength="45"  id="nome" name="nome" required>
+						</div>
+						<div class="mb-3">
+						  <label for="cpf" class="form-label">Login</label>
+						  <input type="text" name="cpf" class="form-control" pattern="\d{11}" maxlength="11" minlength="11" placeholder="Digite seu Cpf">
+						</div>
+						<div class="mb-3">
+							<label for="senha" class="form-label">Senha</label>
+							<input type="text" class="form-control" maxlength="45"  id="senha" name="senha" required>
+						</div>
+						
+						<div class="form-check form-check-inline">
+						    <div class="col-sm-8">
+						        <th:block th:each="permissao: ${permissoes}">
+						            <div>
+						                <input class="form-check-input" type="radio" id="radioOption"
+						                       name="permissaoSelecionada" th:value="${permissao.IdPermissao}" />
+						                <label class="form-check-label" th:for="${permissao.IdPermissao}"
+						                       th:text="${permissao.Nome}"></label>
+						            </div>
+						        </th:block>
+						    </div>
+						</div>
+						<br>
+						
+						<div class="mb-e">
+							<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
+						</div>
+						
+						<br>
+		
+<div id="margin">	
+		<h5 id="tabela1" class="card-title">Usuarios cadastradas</h5>
+		<table id="usuario" class="table table-sn table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th class="col-1">ID</th>
+					<th class="col-3">Nome</th>
+					<th class="col-2">Cpf</th>
+					<th class="col-1"></th>
+	
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${usuarios}">
+					<td th:text="${usuario.IdUsuario}"></td>
+					<td th:text="${usuario.Nome}"></td>
+					<td th:text="${usuario.Cpf}"></td>
+					<td>
+					  <a type="button" class="btn btn-outline-danger"
+					  th:href="@{excluir_usuario/{idUsuario}(idUsuario=${usuario.IdUsuario})}"
+					  onclick="if (confirm('Deseja realmente excluir o aluno?')){return true;}else{event.stopPropagation();event.preventDefault();};">
+					  Excluir
+					  </a>
+				    </td>
+				</tr>
+
+			</tbody>
+
+		</table>
+		</div>
+		<script>
+	$(document).ready( function (){
+    var table = new DataTable('#usuario', {
+		pageLength: 10,	/*Coloquei quantidade completa de itens pois não está salvando a disponibilidade de itens de páginas diferentes*/
+		layout: {
+		    topStart: 
+		    {       
+		            buttons: [
+		               /* {
+		                    extend: 'copyHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'excelHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'csvHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },*/
+		                {
+		                    extend: 'pdfHtml5',
+		                    title: 'Disponibilidade Docente'
+		                },
+		                {
+		                    extend: 'print',
+		                    title: 'Disponibilidade Docente'
+		                }
+		            ]
+		            
+		    }
+		    },	
+	
+    language: 
+	{
+		url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+    },
+	
+	
+});
+
+} );
+</script>
+		</form>					
+		</div>
+		<div th:insert="~{layout/rodape}"></div>
+		
+</body>
+		
+</html>

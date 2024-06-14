@@ -31,7 +31,7 @@ private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
-	private Long id_usuario;
+	private Long idUsuario;
 	
 	@Column(name = "nome")
 	private String nome;
@@ -70,12 +70,13 @@ private static final long serialVersionUID = 1L;
 		this.permissoe = permissoe;
 	}
 
-	public Long getId_usuario() {
-		return id_usuario;
+
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNome() {

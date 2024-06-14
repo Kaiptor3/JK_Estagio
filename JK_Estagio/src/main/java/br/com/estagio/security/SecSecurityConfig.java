@@ -27,6 +27,7 @@ public class SecSecurityConfig {
 		http.authorizeHttpRequests(
 				auth -> auth
 				.requestMatchers("/singin", "/singup").permitAll()
+				.requestMatchers("/img/*").permitAll()
 				.requestMatchers("/aluno").hasAnyAuthority("administrador","empresa")
 				.requestMatchers("/vaga").hasAnyAuthority("administrador","empresa")
 				.requestMatchers("/curso").hasAnyAuthority("administrador")

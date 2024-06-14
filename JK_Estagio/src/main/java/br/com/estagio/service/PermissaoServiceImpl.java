@@ -21,7 +21,7 @@ public class PermissaoServiceImpl implements PermissaoService {
 		
 		if (permissaoEntity.getNome() == null) {
 			this.mensagem = "Digite o nome da permissão.";
-			throw new Exception("Preencha o nome da permissãoo.");
+			throw new Exception("Preencha o nome da permissão.");
 			
 		} else {
 			permissaoRepository.saveAndFlush(permissaoEntity);

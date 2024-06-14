@@ -20,6 +20,7 @@ import br.com.estagio.service.TurnoService;
 
 @Controller
 public class AlunoController {
+	
 	@Autowired
 	private AlunoService alunoService;
 	
