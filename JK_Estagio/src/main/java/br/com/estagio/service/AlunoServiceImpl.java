@@ -26,9 +26,9 @@ public class AlunoServiceImpl implements AlunoService {
 		} else if (alunoEntity.getTelefone() == null){
 			this.mensagem = "Digite o telefone do aluno.";
 			throw new Exception("Preencha o telefone do aluno.");
-		} else if (alunoEntity.getPeriodo() == null) {
-			this.mensagem = "Digite o periodo do aluno.";
-			throw new Exception("Preencha o periodo do aluno");
+		} else if (alunoEntity.getTurno() == null) {
+			this.mensagem = "Digite o turno do aluno.";
+			throw new Exception("Preencha o turno do aluno");
 		} else if (alunoEntity.getEscola() == null) {
 			this.mensagem = "Selecione a escola do aluno.";
 			throw new Exception("Selecione a escola do aluno.");

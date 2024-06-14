@@ -42,13 +42,20 @@
     			</script>
 				
 				<div class="mb-3">
+								<label for="turno" class="form-label">Turno</label>
+								  <select class="form-select" aria-label="Selecione o turno" id="turno" name="turno" required>
+									<option value="">Selecione o turno</option>
+									<option th:each="turno : ${turno}" th:text="${turno.nome}" th:value="${turno.idTurno}" >
+								  </select>
+								</div>
+				
+				<div class="mb-3">
 				<label for="escola" class="form-label">Escola</label>
 				<select class="form-select" aria-label="Selecione a escola" id="escola" name="escola" required>
 				   <option value="">Selecione a escola</option>
 				   <option th:each="escola : ${escola}" th:text="${escola.nome}" th:value="${escola.idEscola}" >
 				</select>
 				</div>
-				
 				
 				<div class="mb-3">
 				<label for="curso" class="form-label">Curso</label>
@@ -58,14 +65,6 @@
 				</select>
 				</div>
 		
-				<div id="P" class="mb-e">
-					<label for="periodo" class="form-label">Perido</label>
-					<select class="form-select" aria-label="Selecione o periodo" id="periodo" name="periodo" required>
-						<option value="">Selecione o Periodo</option>
-						<option>Diurno</option>
-						<option>Noturno</option>
-					</select>
-				</div>
 				<div class="mb-e">
 					<button id="botao" type="submit" class="btn btn-success form-control">Salvar</button>
 				</div>
@@ -85,7 +84,7 @@
 					<th class="col-5">Nome</th>
 					<th>Telefone</th>
 					<th>Curso</th>
-					<th>Periodo</th>
+					<th>Turno</th>
 					
 					<th class="col-1"></th>
 					<th class="col-1"></th>
@@ -97,7 +96,7 @@
 					<td th:text="${aluno.Nome}"></td>
 					<td th:text="${aluno.Telefone}"></td>
 					<td th:text="${aluno.curso.Nome}"></td>
-					<td th:text="${aluno.Periodo}"></td>
+					<td th:text="${aluno.turno.Nome}"></td>
 					
 					<td><a type="button" class="btn btn-outline-warning" th:href="@{alterar_aluno/{idAluno}(idAluno=${aluno.IdAluno})}">Alterar</a></td>
 					<!--Começa o excluir-->

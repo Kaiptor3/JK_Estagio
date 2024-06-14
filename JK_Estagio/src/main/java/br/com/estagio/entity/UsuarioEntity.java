@@ -2,13 +2,17 @@ package br.com.estagio.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,16 +46,29 @@ private static final long serialVersionUID = 1L;
     @JoinColumn(name = "empresa_id", referencedColumnName = "id_empresa")
     private EmpresaEntity empresa;
 	
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "aluno_id", referencedColumnName = "id_aluno")
 	private AlunoEntity aluno;
 	
 	@ManyToMany
-	@JoinTable(name="usuario_permissao",
+	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "permissao_id"))
+	private Set<PermissaoEntity> permissoe = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name="usuario_permissao", 
 	joinColumns= {@JoinColumn(name="usuario_id", referencedColumnName = "id_usuario")},
 	inverseJoinColumns={@JoinColumn(name="permissao_id" , referencedColumnName = "id_permissao")})
 	private List<PermissaoEntity> permissoes;
 	
+	
+
+	public Set<PermissaoEntity> getPermissoe() {
+		return permissoe;
+	}
+
+	public void setPermissoe(Set<PermissaoEntity> permissoe) {
+		this.permissoe = permissoe;
+	}
 
 	public Long getId_usuario() {
 		return id_usuario;

@@ -37,16 +37,16 @@
 				
 				<script type="text/javascript">
     			$("#telefone").mask("(00) 0000-0000");
-    			</script>
     			
-    			<div class="mb-3">
-                 <label for="periodo" class="form-label">Periodo</label>
-    			<select class="form-select" aria-label="Selecione o setor" id="periodo" name="periodo" required>
-                  <option value="">Selecione o periodo</option>
-				  <option>Diurno</option>
-				  <option>Noturno</option>
-                </select>
-                   </div>
+				</script>
+				<div class="mb-3">
+				   <label for="turno" class="form-label">Turno</label>
+				   <select class="form-select" aria-label="Selecione o turno" id="turno" name="turno" required>
+				     <option value="">Selecione o turno</option>
+				     <option th:each="turno : ${turno}" th:text="${turno.nome}" th:value="${turno.idTurno}" th:selected="${turno.idTurno == aluno.turno.idTurno}">
+				   </select>
+				 </div>
+				
                    
                   <div class="mb-3">
                  <label for="escola" class="form-label">Escola</label>

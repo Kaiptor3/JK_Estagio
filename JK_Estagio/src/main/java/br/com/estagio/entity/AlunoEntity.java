@@ -33,8 +33,6 @@ private static final long serialVersionUID = 1L;
        @Column(name = "telefone")
        private String telefone;
 
-       @Column(name = "periodo")
-       private String periodo;
 
        @OneToOne()
        @JoinColumn(name = "escola_id", referencedColumnName = "id_escola")
@@ -44,11 +42,24 @@ private static final long serialVersionUID = 1L;
        @JoinColumn(name = "curso_id", referencedColumnName = "id_curso")
        private CursoEntity curso;
        
+       @OneToOne()
+       @JoinColumn(name = "turno_id", referencedColumnName = "id_turno")
+       private TurnoEntity turno;
+       
        @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
    	   @JoinTable(name="aluno_vaga",
    	   joinColumns= {@JoinColumn(name="aluno_id", referencedColumnName = "id_aluno")},
    	   inverseJoinColumns={@JoinColumn(name="vaga_id" , referencedColumnName = "id_vaga")})
    	   private List<VagaEntity> vagas;
+
+       
+	public TurnoEntity getTurno() {
+		return turno;
+	}
+
+	public void setTurno(TurnoEntity turno) {
+		this.turno = turno;
+	}
 
 	public Long getIdAluno() {
 		return idAluno;
@@ -72,14 +83,6 @@ private static final long serialVersionUID = 1L;
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public String getPeriodo() {
-		return periodo;
-	}
-
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
 	}
 
 	public EscolaEntity getEscola() {

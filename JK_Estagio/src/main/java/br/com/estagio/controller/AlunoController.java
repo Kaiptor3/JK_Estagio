@@ -14,6 +14,7 @@ import br.com.estagio.entity.AlunoEntity;
 import br.com.estagio.service.AlunoService;
 import br.com.estagio.service.CursoService;
 import br.com.estagio.service.EscolaService;
+import br.com.estagio.service.TurnoService;
 
 
 
@@ -28,12 +29,17 @@ public class AlunoController {
 	@Autowired
 	private EscolaService escolaService;
 	
+	@Autowired
+	private TurnoService turnoService;
+	
 	@GetMapping("/aluno")
 	public String aluno(ModelMap model)
 	{
 		model.addAttribute("aluno", alunoService.findAll());
 		model.addAttribute("curso", cursoService.findAll());
 		model.addAttribute("escola", escolaService.findAll());
+		model.addAttribute("turno", turnoService.findAll());
+	
 		return "aluno";
 	}
 	
@@ -59,6 +65,7 @@ public class AlunoController {
 		model.addAttribute("curso",cursoService.findAll());
 		model.addAttribute("idAluno", idAluno);
 		model.addAttribute("aluno", alunoService.getOneByIdAluno(idAluno));
+		model.addAttribute("turno", turnoService.findAll());
 		
 		return mv;
 	}

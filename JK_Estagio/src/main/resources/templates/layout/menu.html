@@ -35,10 +35,7 @@
 		<li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
 		   <a class="nav-link" href="/empresa">Empresas</a>
 		</li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
-          <a class="nav-link" href="/permissao">Permissões</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador','empresa')">
+        <li class="nav-item" sec:authorize="hasAnyAuthority('empresa')">
           <a class="nav-link" href="/relatorio">Relatórios</a>
         </li>
         
